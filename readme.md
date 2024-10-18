@@ -31,7 +31,7 @@
   ```
 2. **Setting License Key**
   - Obtain a license key from https://manage.eyedid.ai/ 
-  - Open the  [`MainActivity.java`](/app/src/main/java/camp/visual/android/sdk/sample/MainActivity.java#L37) file and enter your license key:
+  - Open the  [`MainActivity.java`](/app/src/main/java/camp/visual/android/sdk/sample/MainActivity.java) file and enter your license key:
     ```java
     // TODO: change licence key
     private final String EYEDID_SDK_LICENSE = "typo your license key";
