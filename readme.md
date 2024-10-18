@@ -11,9 +11,9 @@
 
 ## Documentation
 
-- **Overview**: [Eyedid SDK Overview](https://docs.eyedid.ai/docs/Beta/document/eyedid-sdk-overview)
-- **Quick Start**: [Android Quick Start Guide](https://docs.eyedid.ai/docs/Beta/quick-start/android-quick-start)
-- **API Reference**: [Eyedid SDK Android API Documentation](https://docs.eyedid.ai/docs/Beta/api/android-api-docs)
+- **Overview**: [Eyedid SDK Overview](https://docs.eyedid.ai/docs/document/eyedid-sdk-overview)
+- **Quick Start**: [Android Quick Start Guide](https://docs.eyedid.ai/docs/quick-start/android-quick-start)
+- **API Reference**: [Eyedid SDK Android API Documentation](https://docs.eyedid.ai/docs/api/android-api-docs)
 
 ## Requirements
 
