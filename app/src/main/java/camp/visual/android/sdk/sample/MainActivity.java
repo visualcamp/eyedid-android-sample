@@ -30,6 +30,10 @@ import camp.visual.eyedid.gazetracker.callback.TrackingCallback;
 import camp.visual.eyedid.gazetracker.constant.CalibrationModeType;
 import camp.visual.eyedid.gazetracker.constant.GazeTrackerOptions;
 import camp.visual.eyedid.gazetracker.constant.StatusErrorType;
+import camp.visual.eyedid.gazetracker.metrics.BlinkInfo;
+import camp.visual.eyedid.gazetracker.metrics.FaceInfo;
+import camp.visual.eyedid.gazetracker.metrics.GazeInfo;
+import camp.visual.eyedid.gazetracker.metrics.UserStatusInfo;
 import camp.visual.eyedid.gazetracker.metrics.state.TrackingState;
 import camp.visual.eyedid.gazetracker.util.ViewLayoutChecker;
 
@@ -51,9 +55,18 @@ public class MainActivity extends AppCompatActivity {
   private Handler backgroundHandler;
   private final HandlerThread backgroundThread = new HandlerThread("background");
 
-  private final TrackingCallback trackingCallback = (timestamp, gazeInfo, faceInfo, blinkInfo, userStatusInfo) -> {
-    if (gazeInfo.trackingState == TrackingState.SUCCESS) {
-      viewPoint.setPosition(gazeInfo.x, gazeInfo.y);
+  private final TrackingCallback trackingCallback = new TrackingCallback() {
+    @Override
+    public void onMetrics(long timestamp, GazeInfo gazeInfo, FaceInfo faceInfo, BlinkInfo blinkInfo,
+        UserStatusInfo userStatusInfo) {
+      if (gazeInfo.trackingState == TrackingState.SUCCESS) {
+        viewPoint.setPosition(gazeInfo.x, gazeInfo.y);
+      }
+    }
+
+    @Override
+    public void onDrop(long timestamp) {
+      Log.d("MainActivity", "drop frame " + timestamp);
     }
   };
 
@@ -86,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
       // When calibration is finished, calibration data is stored to SharedPreference
       hideCalibrationView();
       showToast("calibrationFinished", true);
+    }
+
+    @Override
+    public void onCalibrationCanceled(double[] doubles) {
+      showToast("calibrationCanceled", true);
     }
   };
 
